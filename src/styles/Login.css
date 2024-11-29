@@ -1,0 +1,73 @@
+/* Algemene container styling */
+.login-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .login-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .success-message {
+    color: green;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Formulier styling */
+  .login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .login-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .login-container input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .login-container button {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Feedback melding */
+  .login-container .error-message,
+  .login-container .success-message {
+    font-size: 0.9em;
+    text-align: center;
+  }
+  

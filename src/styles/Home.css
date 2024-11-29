@@ -1,0 +1,138 @@
+/* Algemene container */
+.home-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+/* Titel */
+h1 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Zoekformulier */
+.search-form {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 14px;
+  font-size: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-input:focus {
+  border-color: #999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+  padding: 14px 20px;
+  font-size: 1rem;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Grid layout voor video's */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* Video kaart */
+.video-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.video-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 15px 15px 10px;
+  color: #222;
+}
+
+.video-description {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 15px 15px;
+  line-height: 1.5;
+}
+
+.details-link {
+  display: inline-block;
+  margin: 10px 15px 20px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+  text-align: center;
+  text-decoration: none;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  transition: all 0.2s ease-in-out;
+}
+
+.details-link:hover {
+  background-color: #f0f0f0;
+  border-color: #bbb;
+}
+
+/* Foutmelding */
+.error-message {
+  color: #d9534f;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Responsiviteit */
+@media (max-width: 768px) {
+  .video-thumbnail {
+    height: 150px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
