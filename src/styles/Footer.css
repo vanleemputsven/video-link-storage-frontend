@@ -1,0 +1,84 @@
+/* Algemene footer styling */
+.footer {
+    background-color: #ffffff;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Logo en tekstsectie */
+  .footer-logo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .footer-logo-image {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .footer-logo-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #5855dd;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Footer tekst */
+  .footer-text {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+  }
+  
+  /* Footer links */
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .footer-link {
+    font-size: 0.9rem;
+    color: #4a69bd;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #395dbe;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+
+
+  @media (max-width: 768px) {
+    .footer-logo-section {
+      flex-direction: column;
+    }
+  
+    .footer-logo-text {
+      font-size: 1.4rem;
+      margin-top: 5px;
+    }
+  
+    .footer-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .footer-link {
+      font-size: 0.85rem;
+    }
+  }
+  

@@ -1,17 +1,28 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Voor navigatie
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
-import "../styles/Register.css"; // Zorg ervoor dat dit correct wordt geladen
+import "../styles/Register.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState(""); // Tweede wachtwoordveld
   const [role, setRole] = useState("user");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Gebruik de `useNavigate` hook
+  const [passwordError, setPasswordError] = useState(""); // Feedback voor wachtwoorden
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Controleer of wachtwoorden overeenkomen
+    if (password !== confirmPassword) {
+      setPasswordError("Wachtwoorden komen niet overeen.");
+      return;
+    }
+
+    setPasswordError(""); // Reset wachtwoordmelding
+
     try {
       const response = await API.post("/auth/register", {
         email,
@@ -19,11 +30,11 @@ const Register = () => {
         role,
       });
       setMessage("Registratie succesvol! U wordt doorgestuurd naar de loginpagina.");
-      console.log(response.data); // Bevat de serverrespons
-
+      
       // Reset form
       setEmail("");
       setPassword("");
+      setConfirmPassword("");
       setRole("user");
 
       // Navigeer naar de loginpagina na 2 seconden
@@ -36,43 +47,52 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <h1>Registreer</h1>
-      {message && (
-        <p
-          className={message.includes("succes") ? "success-message" : "error-message"}
-        >
-          {message}
-        </p>
-      )}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="register-page">
+      <div className="register-container">
+        <h1 className="register-title">Registreer</h1>
+        {message && (
+          <p
+            className={
+              message.includes("succes") ? "success-message" : "error-message"
+            }
+          >
+            {message}
+          </p>
+        )}
+        <form onSubmit={handleSubmit} className="register-form">
           <label>Email:</label>
           <input
             type="email"
+            placeholder="Voer je e-mailadres in"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
           <label>Wachtwoord:</label>
           <input
             type="password"
+            placeholder="Voer je wachtwoord in"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
-        <div>
-          <label>Rol:</label>
+          <label>Bevestig Wachtwoord:</label>
+          <input
+            type="password"
+            placeholder="Bevestig je wachtwoord"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+          {passwordError && <p className="password-error">{passwordError}</p>}
+          <label>Rol (demo):</label>
           <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="user">Gebruiker</option>
+            <option value="user">Student</option>
             <option value="lecturer">Docent</option>
           </select>
-        </div>
-        <button type="submit">Registreer</button>
-      </form>
+          <button type="submit">Registreer</button>
+        </form>
+      </div>
     </div>
   );
 };

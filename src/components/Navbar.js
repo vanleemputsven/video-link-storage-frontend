@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
-  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false); // Voor bevestigingsdialoog
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
 
@@ -16,7 +16,13 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">Home</Link>
+        <div className="navbar-logo-section">
+          <Link to="/" className="navbar-logo">
+            <img src="/logo-vls.png" alt="Logo" className="navbar-logo-image" />
+            <span className="navbar-logo-text">
+        </span>
+          </Link>
+        </div>
         <div className="navbar-links">
           {!token ? (
             <>
@@ -38,17 +44,12 @@ const Navbar = () => {
           )}
         </div>
       </div>
-
-      {/* Bevestigingsdialoog */}
       {showLogoutConfirm && (
         <div className="logout-confirm-overlay">
           <div className="logout-confirm-dialog">
             <p>Weet je zeker dat je wilt uitloggen?</p>
             <div className="logout-confirm-buttons">
-              <button
-                onClick={handleLogout}
-                className="logout-confirm-yes"
-              >
+              <button onClick={handleLogout} className="logout-confirm-yes">
                 Ja, uitloggen
               </button>
               <button

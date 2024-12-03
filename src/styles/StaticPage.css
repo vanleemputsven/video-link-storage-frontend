@@ -1,0 +1,92 @@
+/* Container */
+.static-page-container {
+    max-width: 800px;
+    margin: 200px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: "Inter", sans-serif;
+    color: #2c3e50;
+  }
+  
+  /* Titel */
+  .static-page-container h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4a69bd;
+  }
+  
+  /* Paragrafen en lijsten */
+  .static-page-container p,
+  .static-page-container ul {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #7f8c8d;
+  }
+  
+  .static-page-container ul {
+    padding-left: 20px;
+  }
+  
+  .static-page-container ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Links */
+  .static-page-container a {
+    color: #4a69bd;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .static-page-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contactformulier */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2c3e50;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .submit-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #4a69bd;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #395dbe;
+  }
+  
