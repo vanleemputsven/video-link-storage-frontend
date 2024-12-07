@@ -29,35 +29,47 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-container">
-        <h1 className="login-title">Log in</h1>
+        <h1 className="login-title">Welkom terug</h1>
+        <p className="login-subtitle">Log in om verder te gaan.</p>
         {message && (
           <p
-            className={
+            className={`message ${
               message.includes("succes") ? "success-message" : "error-message"
-            }
+            }`}
           >
             {message}
           </p>
         )}
         <form onSubmit={handleSubmit} className="login-form">
-          <label>Email:</label>
-          <input
-            type="email"
-            placeholder="Voer je e-mailadres in"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <label>Wachtwoord:</label>
-          <input
-            type="password"
-            placeholder="Voer je wachtwoord in"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Log in</button>
+          <div className="form-group">
+            <label htmlFor="email">E-mailadres:</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Voer je e-mailadres in"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Wachtwoord:</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Voer je wachtwoord in"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-button">
+            Log in
+          </button>
         </form>
+        <div className="login-footer">
+          <p>Nog geen account? <a href="/register">Registreer hier</a></p>
+        </div>
       </div>
     </div>
   );

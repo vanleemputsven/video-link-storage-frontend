@@ -1,101 +1,135 @@
-/* Algemene container styling */
+/* Algemene container */
 .upload-container {
   max-width: 600px;
   margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  margin-bottom: 13rem;
+  padding: 30px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  
 }
 
-.upload-container h1 {
-  text-align: center;
+/* Titel en subtitel */
+.upload-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.upload-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
   margin-bottom: 20px;
-  color: #333;
+}
+
+/* Meldingen */
+.upload-message {
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .success-message {
-  color: green;
-  margin-bottom: 15px;
-  text-align: center;
+  color: #28a745;
 }
 
 .error-message {
-  color: red;
-  margin-bottom: 15px;
-  text-align: center;
+  color: #e74c3c;
 }
 
-/* Formulier styling */
-.upload-container form {
+/* Formulier */
+.upload-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+  
 }
 
-.upload-container label {
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
   font-weight: bold;
+  color: #2c3e50;
   margin-bottom: 5px;
-  color: #555;
+  display: block;
 }
 
-.upload-container input,
-.upload-container textarea {
-  padding: 10px;
-  font-size: 1em;
+.upload-form input,
+.upload-form textarea {
+  font-family: "Inter", sans-serif;
+  padding: 12px;
+  font-size: 1rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
+  outline: none;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.upload-container button {
-  padding: 10px 15px;
-  font-size: 1em;
+.upload-form input:focus,
+.upload-form textarea:focus {
+  border-color: #6e9dfc;
+  box-shadow: 0 0 8px rgba(110, 157, 252, 0.5);
+}
+
+/* Knoppen */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.upload-button,
+.cancel-button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.upload-container button:hover {
-  background-color: #0056b3;
+.upload-button {
+  background: linear-gradient(135deg, #0500a3, #6e9dfc);
+  color: white;
 }
 
-/* Progress bar styling */
+.upload-button:hover {
+  background: linear-gradient(135deg, #012d80, #5b8dfd);
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  background: #dc3545;
+  color: white;
+}
+
+.cancel-button:hover {
+  background: #a71d2a;
+  transform: translateY(-2px);
+}
+
+/* Progress bar */
 .progress-bar-container {
-  margin-top: 10px;
-  background-color: #f3f3f3;
+  background: #f3f3f3;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 8px;
   height: 20px;
   overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
-  background-color: #007bff;
-  color: #fff;
+  background: #6e9dfc;
+  color: white;
+  font-size: 0.9rem;
   text-align: center;
   line-height: 20px;
-  font-size: 0.9em;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.progress-bar::after {
-  content: "%";
-}
-
-/* Annuleer knop styling */
-.upload-container .cancel-button {
-  background-color: #dc3545;
-  margin-left: 10px;
-}
-
-.upload-container .cancel-button:hover {
-  background-color: #a71d2a;
 }

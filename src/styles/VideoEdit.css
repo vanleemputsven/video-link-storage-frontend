@@ -1,52 +1,83 @@
 .edit-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #f9f9f9;
-  }
-  
-  .edit-container h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .edit-container label {
-    font-weight: bold;
-  }
-  
-  .edit-container input,
-  .edit-container textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .edit-container button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .edit-container button:hover {
-    background-color: #0056b3;
-  }
-  
-  .success-message {
-    color: green;
-    text-align: center;
-  }
-  
-  .error-message {
-    color: red;
-    text-align: center;
-  }
-  
+  max-width: 700px;
+  margin: 40px auto;
+  margin-bottom: 15rem;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
+}
+
+.edit-container h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edit-form .form-group {
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  font-family: "Inter", sans-serif;
+  width: 96%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #2c3e50;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+  outline: none;
+  border-color: #6e9dfc;
+  box-shadow: 0 0 8px rgba(110, 157, 252, 0.5);
+}
+
+.save-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #6e9dfc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #012d80;
+  transform: translateY(-2px);
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-container">
 
         <p className="footer-text">
-          © {new Date().getFullYear()} Video Link Storage. Alle rechten voorbehouden.
+          © {new Date().getFullYear()} Video Link Storage - Sven Van Leemput. Alle rechten voorbehouden.
         </p>
         <div className="footer-links">
           <a href="/terms" className="footer-link">Gebruiksvoorwaarden</a>

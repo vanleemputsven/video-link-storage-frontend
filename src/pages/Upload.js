@@ -31,15 +31,15 @@ const Upload = () => {
     formData.append("description", description);
     formData.append("video", video);
 
-    const source = API.CancelToken.source(); // Maak een cancel token
+    const source = API.CancelToken.source();
     setCancelTokenSource(source);
 
     try {
-      const response = await API.post("/videos", formData, {
+      await API.post("/videos", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-        cancelToken: source.token, // Voeg de cancel token toe
+        cancelToken: source.token,
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total
@@ -48,12 +48,13 @@ const Upload = () => {
           setMessage(`Uploaden: ${percentCompleted}% voltooid`);
         },
       });
+
       setMessage("Video succesvol geüpload!");
       setTitle("");
       setDescription("");
       setVideo(null);
       fileInputRef.current.value = "";
-      setTimeout(() => navigate("/"), 2000); // Navigeer naar Home na 2 seconden
+      setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       if (API.isCancel(error)) {
         setMessage("Upload geannuleerd.");
@@ -75,32 +76,42 @@ const Upload = () => {
 
   return (
     <div className="upload-container">
-      <h1>Video Uploaden</h1>
+      <h1 className="upload-title">Video Uploaden</h1>
+      <p className="upload-subtitle">Upload je video en deel hem met anderen.</p>
       {message && (
-        <p className={message.includes("succes") ? "success-message" : "error-message"}>
+        <p
+          className={`upload-message ${
+            message.includes("succes") ? "success-message" : "error-message"
+          }`}
+        >
           {message}
         </p>
       )}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Titel:</label>
+      <form onSubmit={handleSubmit} className="upload-form">
+        <div className="form-group">
+          <label htmlFor="title">Titel:</label>
           <input
+            id="title"
             type="text"
+            placeholder="Titel van de video"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Beschrijving:</label>
+        <div className="form-group">
+          <label htmlFor="description">Beschrijving:</label>
           <textarea
+            id="description"
+            placeholder="Beschrijf de inhoud van de video"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div>
-          <label>Video:</label>
+        <div className="form-group">
+          <label htmlFor="video">Video:</label>
           <input
+            id="video"
             type="file"
             accept="video/*"
             onChange={(e) => setVideo(e.target.files[0])}
@@ -115,16 +126,20 @@ const Upload = () => {
             </div>
           </div>
         )}
-        <button type="submit">Upload Video</button>
-        {progress > 0 && (
-          <button
-            type="button"
-            className="cancel-button"
-            onClick={handleCancel}
-          >
-            Annuleer Upload
+        <div className="form-actions">
+          <button type="submit" className="upload-button">
+            Upload Video
           </button>
-        )}
+          {progress > 0 && (
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={handleCancel}
+            >
+              Annuleer Upload
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

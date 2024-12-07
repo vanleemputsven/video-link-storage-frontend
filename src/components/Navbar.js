@@ -18,9 +18,7 @@ const Navbar = () => {
       <div className="navbar-container">
         <div className="navbar-logo-section">
           <Link to="/" className="navbar-logo">
-            <img src="/logo-vls.png" alt="Logo" className="navbar-logo-image" />
-            <span className="navbar-logo-text">
-        </span>
+            <img src="/logo-vls.png" alt="Video Link Storage" className="navbar-logo-image" />
           </Link>
         </div>
         <div className="navbar-links">
@@ -31,6 +29,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
+              <Link to="/" className="navbar-link">Home</Link>
               {role === "lecturer" && (
                 <Link to="/upload" className="navbar-link">Upload Video</Link>
               )}

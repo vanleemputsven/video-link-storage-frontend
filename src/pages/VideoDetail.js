@@ -8,7 +8,7 @@ const VideoDetail = () => {
   const navigate = useNavigate();
   const [video, setVideo] = useState(null);
   const [error, setError] = useState("");
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // Voor de modal
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const role = localStorage.getItem("role");
 
   useEffect(() => {
@@ -43,10 +43,15 @@ const VideoDetail = () => {
 
   return (
     <div className="video-detail-container">
-      <h1>{video.title}</h1>
-      <p>{video.description}</p>
+      <div className="video-header">
+        <h1>{video.title}</h1>
+        <p className="views-count">Bekeken: {video.views}</p>
+      </div>
       <video controls src={video.fileUrl} className="video-player" />
-      <p className="views-count">Views: {video.views}</p>
+      <div className="video-description">
+        <h2>Beschrijving</h2>
+        <p>{video.description}</p>
+      </div>
 
       {role === "lecturer" && (
         <div className="video-actions">
@@ -62,7 +67,6 @@ const VideoDetail = () => {
         </div>
       )}
 
-      {/* Bevestigingsmodal */}
       {showDeleteModal && (
         <div className="modal-overlay">
           <div className="modal">
