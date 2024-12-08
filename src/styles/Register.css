@@ -4,8 +4,24 @@
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  background: linear-gradient(135deg, #6e9dfc, #0500a3);
+  background: linear-gradient(135deg, #0500a3, #012d80, #6e9dfc);
+  animation: waveGradientColor 20s infinite ease-in-out;
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 200%;
+}
+
+@keyframes waveGradientColor {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Register container */
@@ -53,7 +69,7 @@
 
 .register-form input,
 .register-form select {
-  width: 100%;
+  width: 93%;
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -77,7 +93,7 @@
   font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
-  background: linear-gradient(135deg, #0500a3, #6e9dfc);
+  background: #012d80;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -86,7 +102,6 @@
 }
 
 .register-button:hover {
-  background: linear-gradient(135deg, #012d80, #5b8dfd);
   transform: translateY(-2px);
 }
 

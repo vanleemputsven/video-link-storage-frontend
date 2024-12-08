@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const role = localStorage.getItem("role");
-  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    // Controleer de token bij het laden van de component
+    const checkAuthentication = () => {
+      const token = localStorage.getItem("token");
+      setIsAuthenticated(!!token);
+    };
+
+    // Controleer elke 5 seconden of de token nog aanwezig is
+    const interval = setInterval(checkAuthentication, 5000);
+
+    // Initiale controle bij mounten van de component
+    checkAuthentication();
+
+    // Clear interval bij unmount
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -22,7 +39,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-links">
-          {!token ? (
+          {!isAuthenticated ? (
             <>
               <Link to="/login" className="navbar-link">Login</Link>
               <Link to="/register" className="navbar-link">Register</Link>

@@ -1,9 +1,74 @@
 import React, { useEffect, useState } from "react";
 import API from "../services/api";
 import { Link } from "react-router-dom";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
+import { Carousel } from "react-responsive-carousel";
 import "../styles/Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGraduationCap, faVideo, faUsers, faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGraduationCap,
+  faVideo,
+  faUsers,
+  faDownload,
+  faInfoCircle,
+  faChevronDown
+} from "@fortawesome/free-solid-svg-icons";
+
+const FAQSection = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(index === activeIndex ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "Hoe upload ik een video?",
+      answer:
+        "Log in met uw account en klik op 'Upload Video' in de navigatiebalk. Selecteer vervolgens een videobestand en voeg een titel en beschrijving toe.",
+    },
+    {
+      question: "Kan ik video's downloaden?",
+      answer:
+        "Ja, u kunt video's downloaden door op de 'Download'-knop onder de video te klikken.",
+    },
+    {
+      question: "Is deze dienst gratis te gebruiken?",
+      answer:
+        "Ja, Video Link Storage is gratis te gebruiken. Registratie is vereist om toegang te krijgen tot alle functies.",
+    },
+    {
+      question: "Welke bestandsformaten worden ondersteund?",
+      answer:
+        "Video's in de formaten MP4, AVI en MOV worden ondersteund. Zorg ervoor dat uw bestand niet groter is dan 100MB.",
+    },
+  ];
+
+  return (
+    <section className="faq-section">
+      <h2>Veelgestelde Vragen</h2>
+      <div className="faq-container">
+        {faqs.map((faq, index) => (
+          <div
+            key={index}
+            className={`faq-item ${activeIndex === index ? "active" : ""}`}
+            onClick={() => toggleFAQ(index)}
+          >
+            <div className="faq-question">
+              <span>{faq.question}</span>
+              <span className="faq-icon">
+                {activeIndex === index ? "-" : "+"}
+              </span>
+            </div>
+            {activeIndex === index && (
+              <div className="faq-answer">{faq.answer}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -93,7 +158,14 @@ const Home = () => {
 
       <section className="videos-section">
         <h2>Bekijk onze video's</h2>
-        {error && <p className="error-message">{error}</p>}
+        {error && (
+          <div className="info-message">
+            <FontAwesomeIcon icon={faInfoCircle} className="info-icon" />{" "}
+            {error} <br />
+            <Link to="/login">Log in</Link> of{" "}
+            <Link to="/register">registreer</Link> om toegang te krijgen.
+          </div>
+        )}
         <div className="video-grid">
           {videos.slice(0, visibleVideos).map((video) => (
             <div className="video-card" key={video._id}>
@@ -106,51 +178,83 @@ const Home = () => {
               </p>
               <div className="video-actions">
                 <Link to={`/video/${video._id}`} className="details-link">
-                  <FontAwesomeIcon icon={faInfoCircle} className="icon" /> Details
+                  <FontAwesomeIcon icon={faInfoCircle} className="icon" />{" "}
+                  Details
                 </Link>
                 <a href={video.fileUrl} download className="download-button">
-                  <FontAwesomeIcon icon={faDownload} className="icon" /> Download
+                  <FontAwesomeIcon icon={faDownload} className="icon" />{" "}
+                  Download
                 </a>
               </div>
             </div>
           ))}
         </div>
         {visibleVideos < videos.length && (
-          <button onClick={handleLoadMore} className="load-more-button">
-            Laad Meer Video's
-          </button>
-        )}
+  <button onClick={handleLoadMore} className="load-more-button">
+    <FontAwesomeIcon icon={faChevronDown} className="icon" /> Laad Meer Video's
+  </button>
+)}
       </section>
 
       <section className="features-section">
         <h2>Waarom Video Link Storage?</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <FontAwesomeIcon icon={faGraduationCap} className="feature-icon" />
-            <h3>Educatief materiaal</h3>
-            <p>
-              Toegang tot video's die speciaal zijn ontworpen om je leerervaring
-              te verbeteren.
-            </p>
-          </div>
-          <div className="feature-card">
-            <FontAwesomeIcon icon={faUsers} className="feature-icon" />
-            <h3>Gebruiksvriendelijke interface</h3>
-            <p>
-              Navigeer moeiteloos door onze collectie met een modern en strak
-              ontwerp.
-            </p>
-          </div>
-          <div className="feature-card">
-            <FontAwesomeIcon icon={faVideo} className="feature-icon" />
-            <h3>Docenten dashboard</h3>
-            <p>
-              Beheer eenvoudig je eigen video's en krijg inzicht in
-              gebruiksstatistieken.
-            </p>
-          </div>
-        </div>
+        <Carousel
+          showThumbs={false}
+          infiniteLoop
+          autoPlay
+          interval={10000}
+          showStatus={false}
+          stopOnHover
+        >
+ <div className="feature-card">
+      <FontAwesomeIcon icon={faGraduationCap} className="feature-icon" />
+      <h3>Educatief materiaal</h3>
+      <p>
+        Toegang tot video's die speciaal zijn ontworpen om je leerervaring
+        te verbeteren.
+      </p>
+    </div>
+    <div className="feature-card">
+      <FontAwesomeIcon icon={faUsers} className="feature-icon" />
+      <h3>Gebruiksvriendelijke interface</h3>
+      <p>
+        Navigeer moeiteloos door onze collectie met een modern en strak
+        ontwerp.
+      </p>
+    </div>
+    <div className="feature-card">
+      <FontAwesomeIcon icon={faVideo} className="feature-icon" />
+      <h3>Docenten dashboard</h3>
+      <p>
+        Beheer eenvoudig je eigen video's en krijg inzicht in
+        gebruiksstatistieken.
+      </p>
+    </div>
+    <div className="feature-card">
+      <FontAwesomeIcon icon={faDownload} className="feature-icon" />
+      <h3>Onbeperkte downloads</h3>
+      <p>
+        Download video's in hoge kwaliteit en bekijk ze offline wanneer je maar wilt.
+      </p>
+    </div>
+    <div className="feature-card">
+      <FontAwesomeIcon icon={faInfoCircle} className="feature-icon" />
+      <h3>Veilige opslag</h3>
+      <p>
+        Je video's worden veilig opgeslagen in de cloud met privacy als hoogste prioriteit.
+      </p>
+    </div>
+    <div className="feature-card">
+      <FontAwesomeIcon icon={faUsers} className="feature-icon" />
+      <h3>Community support</h3>
+      <p>
+        Krijg hulp van medegebruikers en deel je eigen tips en kennis.
+      </p>
+    </div>
+        </Carousel>
       </section>
+
+      <FAQSection />
     </div>
   );
 };

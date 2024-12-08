@@ -1,8 +1,8 @@
 /* Algemene container */
 .upload-container {
   max-width: 600px;
-  margin: 20px auto;
-  margin-bottom: 13rem;
+  margin: 5rem auto;
+  margin-bottom: 10rem;
   padding: 30px;
   border-radius: 12px;
   background: #ffffff;
@@ -97,14 +97,10 @@
 }
 
 .upload-button {
-  background: linear-gradient(135deg, #0500a3, #6e9dfc);
+  background: #012d80;
   color: white;
 }
 
-.upload-button:hover {
-  background: linear-gradient(135deg, #012d80, #5b8dfd);
-  transform: translateY(-2px);
-}
 
 .cancel-button {
   background: #dc3545;

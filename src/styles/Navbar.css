@@ -1,6 +1,25 @@
-/* Navbar algemene styling */
+/* ========================= */
+/* Kleuren en variabelen     */
+/* ========================= */
+:root {
+  --color-primary: #012d80; /* Primaire kleur */
+  --color-primary-hover: #042a70;
+  --color-secondary: #6e9dfc; /* Secundaire kleur */
+  --color-secondary-hover: #5185ee;
+  --color-background: #ffffff;
+  --color-text-dark: #2c3e50;
+  --color-text-light: #ffffff;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-border-light: #ddd;
+  --color-hover-gray: #f3f4f6;
+  --color-hover-dark-gray: #555555;
+}
+
+/* ========================= */
+/* Navbar algemene styling   */
+/* ========================= */
 .navbar {
-  background-color: #ffffff;
+  background-color: var(--color-background);
   padding: 15px 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -27,7 +46,7 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #012d80;
+  color: var(--color-primary);
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -39,10 +58,12 @@
 
 .navbar-logo-text {
   font-size: 1.2rem;
-  color: #2c3e50;
+  color: var(--color-text-dark);
 }
 
-/* Links */
+/* ========================= */
+/* Links styling             */
+/* ========================= */
 .navbar-links {
   display: flex;
   gap: 20px;
@@ -51,24 +72,24 @@
 .navbar-link {
   font-size: 1rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--color-text-light);
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 8px;
-  background-color: #6e9dfc;
+  background-color: var(--color-secondary);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar-link:hover {
-  background-color: #5185ee
+  background-color: var(--color-secondary-hover);
 }
 
 /* Logout knop */
 .navbar-logout-button {
   font-size: 1rem;
   font-weight: 500;
-  color: #ffffff;
-  background-color: #012d80;
+  color: var(--color-text-light);
+  background-color: var(--color-primary);
   border: none;
   border-radius: 8px;
   padding: 10px 15px;
@@ -77,48 +98,48 @@
 }
 
 .navbar-logout-button:hover {
-  background-color: #042a70;
+  background-color: var(--color-primary-hover);
 }
 
+/* ========================= */
 /* Logout bevestiging overlay */
+/* ========================= */
 .logout-confirm-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--color-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2000;
 }
 
-/* Logout bevestiging dialog */
 .logout-confirm-dialog {
-  background-color: #ffffff;
+  background-color: var(--color-background);
   padding: 20px 30px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
 .logout-confirm-dialog p {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #333333;
+  color: var(--color-text-dark);
   margin-bottom: 20px;
 }
 
-/* Bevestigingsknoppen */
 .logout-confirm-buttons {
   display: flex;
   gap: 15px;
 }
 
 .logout-confirm-yes {
-  background-color: #e74c3c;
-  color: #ffffff;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
@@ -129,14 +150,13 @@
 }
 
 .logout-confirm-yes:hover {
-  background-color: #c0392b;
-  transform: translateY(-2px);
+  background-color: var(--color-primary-hover);
 }
 
 .logout-confirm-no {
-  background-color: #f3f4f6;
-  color: #555555;
-  border: 1px solid #ddd;
+  background-color: var(--color-hover-gray);
+  color: var(--color-hover-dark-gray);
+  border: 1px solid var(--color-border-light);
   border-radius: 8px;
   padding: 10px 20px;
   font-size: 1rem;
@@ -146,11 +166,12 @@
 }
 
 .logout-confirm-no:hover {
-  background-color: #e6e6e6;
-  transform: translateY(-2px);
+  background-color: var(--color-border-light);
 }
 
-/* Responsiviteit */
+/* ========================= */
+/* Responsiviteit            */
+/* ========================= */
 @media (max-width: 768px) {
   .navbar-links {
     flex-wrap: wrap;
