@@ -1,7 +1,9 @@
+// src/pages/Upload.js
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/Upload.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Upload = () => {
   const [title, setTitle] = useState("");
@@ -21,7 +23,7 @@ const Upload = () => {
       return;
     }
 
-    if (video.size > 104857600) {
+    if (video.size > 104857600) { // 100MB
       setMessage("De video mag niet groter zijn dan 100MB.");
       return;
     }
@@ -97,6 +99,7 @@ const Upload = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            className="form-input"
           />
         </div>
         <div className="form-group">
@@ -106,6 +109,7 @@ const Upload = () => {
             placeholder="Beschrijf de inhoud van de video"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            className="form-textarea"
           />
         </div>
         <div className="form-group">
@@ -117,6 +121,7 @@ const Upload = () => {
             onChange={(e) => setVideo(e.target.files[0])}
             ref={fileInputRef}
             required
+            className="form-input"
           />
         </div>
         {progress > 0 && (
@@ -128,7 +133,7 @@ const Upload = () => {
         )}
         <div className="form-actions">
           <button type="submit" className="upload-button">
-            Upload Video
+            <FontAwesomeIcon icon="upload" className="icon" /> Upload Video
           </button>
           {progress > 0 && (
             <button
@@ -136,7 +141,7 @@ const Upload = () => {
               className="cancel-button"
               onClick={handleCancel}
             >
-              Annuleer Upload
+              <FontAwesomeIcon icon="times-circle" className="icon" /> Annuleer Upload
             </button>
           )}
         </div>

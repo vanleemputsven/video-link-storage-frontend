@@ -1,60 +1,173 @@
+// src/components/Navbar.js
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; 
 import "../styles/Navbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+// Hulpfunctie om te checken of token is verlopen
+function isTokenExpired(token) {
+  if (!token) return true;
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    if (payload.exp * 1000 < Date.now()) {
+      return true;
+    }
+  } catch (err) {
+    return true;
+  }
+  return false;
+}
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const role = localStorage.getItem("role");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // we lezen role alleen als user ingelogd is
+  const [currentRole, setCurrentRole] = useState(localStorage.getItem("role") || null);
+
+  const checkAuthentication = () => {
+    const token = localStorage.getItem("token");
+    if (!token || isTokenExpired(token)) {
+      // Als er geen token is, of hij is verlopen => niet ingelogd
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      setIsAuthenticated(false);
+      setCurrentRole(null);
+    } else {
+      // Token nog geldig
+      setIsAuthenticated(true);
+      setCurrentRole(localStorage.getItem("role")); 
+    }
+  };
 
   useEffect(() => {
-    // Controleer de token bij het laden van de component
-    const checkAuthentication = () => {
-      const token = localStorage.getItem("token");
-      setIsAuthenticated(!!token);
-    };
-
-    // Controleer elke 5 seconden of de token nog aanwezig is
-    const interval = setInterval(checkAuthentication, 5000);
-
-    // Initiale controle bij mounten van de component
+    // Check direct bij laden
     checkAuthentication();
 
-    // Clear interval bij unmount
+    // Check elke 5 sec
+    const interval = setInterval(() => {
+      checkAuthentication();
+    }, 5000);
+
     return () => clearInterval(interval);
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    setIsAuthenticated(false);
+    setCurrentRole(null);
+    setShowLogoutConfirm(false);
     window.location.href = "/";
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo-section">
-          <Link to="/" className="navbar-logo">
-            <img src="/logo-vls.png" alt="Video Link Storage" className="navbar-logo-image" />
-          </Link>
+          <NavLink to="/" className="navbar-logo" onClick={closeMobileMenu}>
+            <img
+              src="/logo-vls.png"
+              alt="Video Link Storage"
+              className="navbar-logo-image"
+            />
+          </NavLink>
         </div>
-        <div className="navbar-links">
+        <div
+          className="navbar-hamburger"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+          role="button"
+          tabIndex={0}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") toggleMobileMenu();
+          }}
+        >
+          <FontAwesomeIcon icon={isMobileMenuOpen ? "times" : "bars"} />
+        </div>
+        <div className={`navbar-links ${isMobileMenuOpen ? "active" : ""}`}>
           {!isAuthenticated ? (
             <>
-              <Link to="/login" className="navbar-link">Login</Link>
-              <Link to="/register" className="navbar-link">Register</Link>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `navbar-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMobileMenu}
+              >
+                <FontAwesomeIcon icon="sign-in-alt" /> Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className={({ isActive }) =>
+                  `navbar-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMobileMenu}
+              >
+                <FontAwesomeIcon icon="user-plus" /> Register
+              </NavLink>
             </>
           ) : (
             <>
-              <Link to="/" className="navbar-link">Home</Link>
-              {role === "lecturer" && (
-                <Link to="/upload" className="navbar-link">Upload Video</Link>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `navbar-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMobileMenu}
+              >
+                <FontAwesomeIcon icon="home" /> Home
+              </NavLink>
+              <NavLink
+                to="/favorites"
+                className={({ isActive }) =>
+                  `navbar-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMobileMenu}
+              >
+                <FontAwesomeIcon icon="heart" /> Favorieten
+              </NavLink>
+              {currentRole === "lecturer" && (
+                <NavLink
+                  to="/upload"
+                  className={({ isActive }) =>
+                    `navbar-link ${isActive ? "active" : ""}`
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  <FontAwesomeIcon icon="upload" /> Upload Video
+                </NavLink>
               )}
+
+              {/* NIEUW: Beheer Account */}
+              <NavLink
+                to="/account"
+                className={({ isActive }) =>
+                  `navbar-link ${isActive ? "active" : ""}`
+                }
+                onClick={closeMobileMenu}
+              >
+                <FontAwesomeIcon icon="user-cog" /> Beheer Account
+              </NavLink>
+
+              {/* Logout-knop */}
               <button
-                onClick={() => setShowLogoutConfirm(true)}
+                onClick={() => {
+                  setShowLogoutConfirm(true);
+                  closeMobileMenu();
+                }}
                 className="navbar-logout-button"
               >
-                Logout
+                <FontAwesomeIcon icon="sign-out-alt" /> Logout
               </button>
             </>
           )}

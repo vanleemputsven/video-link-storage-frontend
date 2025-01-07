@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// src/pages/Register.js
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/Register.css";
@@ -8,19 +9,23 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("user");
-  const [message, setMessage] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState(""); // Meldingstekst
+  const [messageType, setMessageType] = useState(""); // 'success' of 'error'
+  const [fadeOut, setFadeOut] = useState(false); // Voor fade-out animatie
+  const navigate = useNavigate(); // Initialiseer navigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Controleer of wachtwoorden overeenkomen
     if (password !== confirmPassword) {
-      setPasswordError("Wachtwoorden komen niet overeen.");
+      setMessage("Wachtwoorden komen niet overeen.");
+      setMessageType("error");
       return;
     }
 
-    setPasswordError("");
+    setMessage("");
+    setMessageType("");
 
     try {
       await API.post("/auth/register", {
@@ -29,7 +34,8 @@ const Register = () => {
         role,
       });
 
-      setMessage("Registratie succesvol! U wordt doorgestuurd naar de loginpagina.");
+      setMessage("Registratie succesvol! Je wordt doorgestuurd naar de loginpagina.");
+      setMessageType("success");
 
       // Reset formulier
       setEmail("");
@@ -37,27 +43,49 @@ const Register = () => {
       setConfirmPassword("");
       setRole("user");
 
-      // Navigeer naar de loginpagina
+      // Navigeer naar de loginpagina na een korte vertraging
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       setMessage(err.response?.data?.message || "Er ging iets mis.");
+      setMessageType("error");
     }
   };
+
+  // Automatisch de melding verwijderen na 5 seconden met fade-out
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setFadeOut(true);
+      }, 4500); // Start fade-out na 4.5 seconden
+
+      const removeTimer = setTimeout(() => {
+        setMessage("");
+        setMessageType("");
+        setFadeOut(false);
+      }, 5000); // Verwijder melding na 5 seconden
+
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(removeTimer);
+      };
+    }
+  }, [message]);
 
   return (
     <div className="register-page">
       <div className="register-container">
-        <h1 className="register-title">Maak een account</h1>
-        <p className="register-subtitle">Registreer je om toegang te krijgen.</p>
+        {/* Meldingen */}
         {message && (
-          <p
-            className={`message ${
-              message.includes("succes") ? "success-message" : "error-message"
-            }`}
+          <div
+            className={`info-message ${messageType} ${fadeOut ? "fade-out" : ""}`}
           >
             {message}
-          </p>
+          </div>
         )}
+
+        <h1 className="register-title">Maak een account</h1>
+        <p className="register-subtitle">Registreer je om toegang te krijgen.</p>
+
         <form onSubmit={handleSubmit} className="register-form">
           <div className="form-group">
             <label htmlFor="email">E-mailadres:</label>
@@ -91,7 +119,7 @@ const Register = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            {passwordError && <p className="password-error">{passwordError}</p>}
+            {/* Verwijderd: {passwordError && <p className="password-error">{passwordError}</p>} */}
           </div>
           <div className="form-group">
             <label htmlFor="role">Rol:</label>
@@ -103,13 +131,16 @@ const Register = () => {
               <option value="user">Student</option>
               <option value="lecturer">Docent</option>
             </select>
+            <small className="role-note">(Alleen voor demo doeleinden)</small>
           </div>
           <button type="submit" className="register-button">
             Registreer
           </button>
         </form>
         <div className="register-footer">
-          <p>Heb je al een account? <a href="/login">Log in</a></p>
+          <p>
+            Heb je al een account? <a href="/login">Log in</a>
+          </p>
         </div>
       </div>
     </div>

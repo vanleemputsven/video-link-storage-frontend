@@ -1,3 +1,5 @@
+/* src/styles/Contact.css */
+
 /* Algemene container */
 .static-page-container {
   max-width: 800px;
@@ -8,6 +10,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   font-family: "Inter", sans-serif;
   color: #2c3e50;
+  text-align: center;
 }
 
 /* Titel */
@@ -19,32 +22,27 @@
   color: #4a69bd;
 }
 
-/* Paragrafen en lijsten */
-.static-page-container p,
-.static-page-container ul {
+/* Subtitel */
+.static-page-container p {
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 20px;
   color: #7f8c8d;
 }
 
-.static-page-container ul {
-  padding-left: 20px;
+/* Meldingen */
+.success-message {
+  color: #28a745;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.static-page-container ul li {
-  margin-bottom: 10px;
-}
-
-/* Links */
-.static-page-container a {
-  color: #4a69bd;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.static-page-container a:hover {
-  text-decoration: underline;
+.error-message {
+  color: #e74c3c;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Contactformulier */
@@ -54,19 +52,22 @@
   gap: 15px;
 }
 
+/* Formulier groepen */
 .form-group {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
 .form-group label {
   font-weight: bold;
   margin-bottom: 5px;
   color: #2c3e50;
+  display: block;
 }
 
-.form-group input,
-.form-group textarea {
+.form-input,
+.form-textarea {
   font-family: "Inter", sans-serif;
   padding: 12px;
   border-radius: 8px;
@@ -74,8 +75,21 @@
   background-color: #f9f9f9;
   font-size: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #6e9dfc;
+  box-shadow: 0 0 8px rgba(110, 157, 252, 0.5);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Knoppen */
 .submit-button {
   background: linear-gradient(135deg, #4a69bd, #5d8ae6);
   color: white;
@@ -85,22 +99,123 @@
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Kleine ruimte tussen icoon en tekst */
 }
 
 .submit-button:hover {
   background-color: #395dbe;
+  transform: translateY(-1px);
 }
 
-/* Succes- en foutmeldingen */
-.success-message {
-  color: #28a745;
-  font-weight: bold;
-  text-align: center;
+/* Extra contactinformatie */
+.additional-contact-info {
+  margin-top: 40px;
+  text-align: left;
 }
 
-.error-message {
-  color: #e74c3c;
-  font-weight: bold;
-  text-align: center;
+.additional-contact-info h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.additional-contact-info p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #7f8c8d;
+}
+
+.additional-contact-info ul {
+  padding-left: 20px;
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+
+.additional-contact-info ul li {
+  margin-bottom: 10px;
+}
+
+.additional-contact-info a {
+  color: #4a69bd;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.additional-contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Responsieve Aanpassingen */
+@media (max-width: 768px) {
+  .static-page-container {
+    padding: 30px 15px;
+    margin: 50px auto;
+  }
+
+  .static-page-container h1 {
+    font-size: 2rem;
+  }
+
+  .static-page-container p {
+    font-size: 1rem;
+  }
+
+  .contact-form {
+    gap: 15px;
+  }
+
+  .submit-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .additional-contact-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .additional-contact-info p,
+  .additional-contact-info ul {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .static-page-container {
+    padding: 20px 10px;
+    margin: 30px auto;
+  }
+
+  .static-page-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .static-page-container p {
+    font-size: 0.95rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .submit-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .additional-contact-info h2 {
+    font-size: 1.6rem;
+  }
+
+  .additional-contact-info p,
+  .additional-contact-info ul {
+    font-size: 0.95rem;
+  }
 }

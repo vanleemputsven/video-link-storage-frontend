@@ -8,9 +8,11 @@ import Upload from "./pages/Upload";
 import Navbar from "./components/Navbar";
 import VideoEdit from "./pages/VideoEdit";
 import Footer from "./components/Footer";
-import Terms from "./pages/Terms"; // Nieuwe pagina voor Gebruiksvoorwaarden
-import Privacy from "./pages/Privacy"; // Nieuwe pagina voor Privacybeleid
-import Contact from "./pages/Contact"; // Nieuwe pagina voor Contact
+import Terms from "./pages/Terms"; 
+import Privacy from "./pages/Privacy"; 
+import Contact from "./pages/Contact"; 
+import Favorites from "./pages/Favorites";
+import AccountPage from "./pages/AccountPage";
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
         <Route path="/video/:id" element={<VideoDetail />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/video/edit/:id" element={<VideoEdit />} />
-        <Route path="/terms" element={<Terms />} /> {/* Nieuwe route */}
-        <Route path="/privacy" element={<Privacy />} /> {/* Nieuwe route */}
-        <Route path="/contact" element={<Contact />} /> {/* Nieuwe route */}
+        <Route path="/favorites" element={<Favorites />} /> 
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} /> 
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/account" element={<AccountPage />} />
       </Routes>
       <Footer />
     </Router>

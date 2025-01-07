@@ -1,0 +1,193 @@
+/* src/styles/AccountPage.css */
+
+/* Algemene container */
+.account-page-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px 40px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "Inter", sans-serif;
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  /* Titel & subtitel */
+  .account-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .account-page-subtitle {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+  
+  /* Feedback-melding */
+  .account-page-message {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 12px 15px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .account-page-message.success {
+    background-color: #ecf9f1; 
+    color: #27ae60;
+    border-left: 4px solid #27ae60;
+  }
+  
+  .account-page-message.error {
+    background-color: #fdf2f2;
+    color: #e74c3c;
+    border-left: 4px solid #e74c3c;
+  }
+  
+  /* Profiel-kaartje */
+  .account-profile-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #f9f9ff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+  
+  .profile-icon {
+    font-size: 3rem;
+    color: #012d80;
+  }
+  
+  .profile-info p {
+    margin: 0;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  /* Instructietekst */
+  .account-info-text {
+    background-color: #fafafe;
+    padding: 15px;
+    border-radius: 8px;
+    color: #34495e;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  /* Content (forms, knoppen) */
+  .account-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+  }
+  
+  /* Formulier */
+  .account-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Labels & Inputs */
+  .account-page-label {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .account-page-input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9ff;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .account-page-input:focus {
+    border-color: #6e9dfc;
+    box-shadow: 0 0 8px rgba(110, 157, 252, 0.4);
+  }
+  
+  /* Knoppen */
+  .account-page-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .account-page-button:hover {
+    transform: translateY(-0.2px);
+  }
+  
+  /* Verschillende button stijlen */
+  .change-button {
+    background-color: #012d80; /* Donkerblauw */
+  }
+  .change-button:hover {
+    background-color: #6e9dfc;
+  }
+  
+  .export-button {
+    background-color: #6e9dfc; /* Lichtblauw */
+  }
+  .export-button:hover {
+    background-color: #012d80;
+  }
+  
+  .delete-button {
+    background-color: #e74c3c; /* Rood */
+  }
+  .delete-button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Divider */
+  .account-page-divider {
+    height: 2px;
+    background-color: #f0f0f0;
+    margin: 0 0 10px 0;
+    border-radius: 1px;
+  }
+  
+  /* Responsiviteit */
+  @media (max-width: 600px) {
+    .account-page-container {
+      margin: 30px auto;
+      padding: 20px;
+    }
+  
+    .account-page-title {
+      font-size: 1.8rem;
+    }
+  
+    .account-page-subtitle {
+      font-size: 1rem;
+    }
+  
+    .profile-icon {
+      font-size: 2.5rem;
+    }
+  }
+  

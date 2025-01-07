@@ -1,4 +1,6 @@
-/* Login-pagina */
+/* src/styles/Login.css */
+
+/* Algemene container */
 .login-page {
   display: flex;
   justify-content: center;
@@ -33,9 +35,10 @@
   width: 100%;
   max-width: 400px;
   text-align: center;
+  position: relative; 
 }
 
-/* Titel en subtitel */
+
 .login-title {
   font-size: 2rem;
   color: #2c3e50;
@@ -47,6 +50,41 @@
   font-size: 1.1rem;
   color: #7f8c8d;
   margin-bottom: 20px;
+}
+
+/* Melding */
+.info-message {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.info-message.success {
+  background-color: #e6f7ff; 
+  color: #31708f; 
+  border-left: 5px solid #1890ff; 
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-message.error {
+  background-color: #f8d7da; 
+  color: #721c24; 
+  border-left: 5px solid #f44336; 
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-message.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 /* Formulier */
@@ -100,22 +138,8 @@
 }
 
 .login-button:hover {
-
+  background: #013b9c; 
   transform: translateY(-2px);
-}
-
-/* Succes- en foutmeldingen */
-.message {
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.success-message {
-  color: #28a745;
-}
-
-.error-message {
-  color: #e74c3c;
 }
 
 /* Footer */
@@ -133,4 +157,21 @@
 
 .login-footer a:hover {
   text-decoration: underline;
+}
+
+/* Wachtwoord foutmelding */
+.password-error {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-top: -10px;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+
+@media (max-width: 600px) {
+  .info-message {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
 }

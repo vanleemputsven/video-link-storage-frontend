@@ -1,4 +1,6 @@
-/* Register-pagina container */
+/* src/styles/Register.css */
+
+/* Algemene container */
 .register-page {
   display: flex;
   justify-content: center;
@@ -33,6 +35,7 @@
   max-width: 400px;
   width: 100%;
   text-align: center;
+  position: relative; /* Voor mogelijke toekomstige absolute elementen */
 }
 
 /* Titel en subtitel */
@@ -49,6 +52,41 @@
   margin-bottom: 20px;
 }
 
+/* Melding */
+.info-message {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.info-message.success {
+  background-color: #e6f7ff; /* Lichtblauwe achtergrond */
+  color: #31708f; /* Donkerblauwe tekst */
+  border-left: 5px solid #1890ff; /* Blauwe linkerkant */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-message.error {
+  background-color: #f8d7da; /* Lichtrode achtergrond */
+  color: #721c24; /* Donkerrode tekst */
+  border-left: 5px solid #f44336; /* Rode linkerkant */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-message.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
 /* Formulier */
 .register-form {
   display: flex;
@@ -58,6 +96,9 @@
 
 .form-group {
   text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
@@ -69,7 +110,7 @@
 
 .register-form input,
 .register-form select {
-  width: 93%;
+  width: 100%; /* Zorgt voor volledige breedte */
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -79,12 +120,34 @@
   outline: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Zorgt voor consistente box-sizing */
 }
+
+.register-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10 7"><path fill="%232c3e50" d="M0 0l5 7 5-7H0z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 7px;
+  cursor: pointer;
+  padding-right: 30px; /* Ruimte voor de pijl */
+}
+
 
 .register-form input:focus,
 .register-form select:focus {
   border-color: #6e9dfc;
   box-shadow: 0 0 8px rgba(110, 157, 252, 0.5);
+}
+
+/* Notitie bij Rol veld */
+.role-note {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  color: #7f8c8d;
 }
 
 /* Knop */
@@ -102,29 +165,8 @@
 }
 
 .register-button:hover {
+  background: #013b9c; /* Donkerder blauw tint bij hover */
   transform: translateY(-2px);
-}
-
-/* Succes- en foutmeldingen */
-.message {
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.success-message {
-  color: #28a745;
-}
-
-.error-message {
-  color: #e74c3c;
-}
-
-.password-error {
-  color: #e74c3c;
-  font-weight: bold;
-  margin-top: -10px;
-  font-size: 0.9rem;
-  text-align: left;
 }
 
 /* Footer */
@@ -142,4 +184,14 @@
 
 .register-footer a:hover {
   text-decoration: underline;
+}
+
+
+
+/* Responsieve aanpassing */
+@media (max-width: 600px) {
+  .info-message {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
 }

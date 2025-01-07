@@ -1,5 +1,8 @@
+// src/pages/Contact.js
 import React, { useState } from "react";
 import "../styles/StaticPage.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -57,6 +60,7 @@ const Contact = () => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Uw volledige naam"
             required
+            className="form-input"
           />
         </div>
         <div className="form-group">
@@ -68,6 +72,7 @@ const Contact = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Uw e-mailadres"
             required
+            className="form-input"
           />
         </div>
         <div className="form-group">
@@ -79,10 +84,11 @@ const Contact = () => {
             rows="5"
             placeholder="Typ hier uw bericht of vraag"
             required
+            className="form-textarea"
           />
         </div>
         <button type="submit" className="submit-button">
-          Verzenden
+          <FontAwesomeIcon icon="paper-plane" className="icon" /> Verzenden
         </button>
       </form>
 
@@ -92,7 +98,12 @@ const Contact = () => {
           U kunt ons ook bereiken via de volgende kanalen:
         </p>
         <ul>
-          <li>Email: <a href="mailto:info@videolinkstorage.com">info@videolinkstorage.com</a></li>
+          <li>
+            Email:{" "}
+            <a href="mailto:info@videolinkstorage.com">
+              info@videolinkstorage.com
+            </a>
+          </li>
           <li>Telefoon: +32 123 456 789</li>
           <li>Adres: 1234 Educatie Straat, Leuven, België</li>
         </ul>

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const API = axios.create({
   baseURL: "http://localhost:5000/api",
 });
@@ -16,5 +17,13 @@ API.interceptors.request.use((req) => {
   }
   return req;
 });
+
+// Favorieten functies
+export const addFavorite = (videoId) => API.post(`/favorites/${videoId}`);
+export const removeFavorite = (videoId) => API.delete(`/favorites/${videoId}`);
+export const getFavorites = () => API.get("/favorites");
+
+
+
 
 export default API;

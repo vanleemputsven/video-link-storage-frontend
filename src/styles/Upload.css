@@ -1,20 +1,21 @@
+/* src/styles/Upload.css */
+
 /* Algemene container */
 .upload-container {
   max-width: 600px;
-  margin: 5rem auto;
-  margin-bottom: 10rem;
+  margin: 5rem auto 10rem;
   padding: 30px;
   border-radius: 12px;
   background: #ffffff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   text-align: center;
-  
+  font-family: "Inter", sans-serif;
 }
 
 /* Titel en subtitel */
 .upload-title {
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 700;
   color: #2c3e50;
   margin-bottom: 10px;
 }
@@ -32,11 +33,11 @@
 }
 
 .success-message {
-  color: #28a745;
+  color: #28a745; /* Groen voor succes */
 }
 
 .error-message {
-  color: #e74c3c;
+  color: #e74c3c; /* Rood voor fouten */
 }
 
 /* Formulier */
@@ -44,23 +45,23 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  
-}
-
-.form-group {
   text-align: left;
 }
 
-.form-group label {
-  font-weight: bold;
-  color: #2c3e50;
-  margin-bottom: 5px;
-  display: block;
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.upload-form input,
-.upload-form textarea {
-  font-family: "Inter", sans-serif;
+.form-group label {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.form-input,
+.form-textarea {
   padding: 12px;
   font-size: 1rem;
   border: 1px solid #ddd;
@@ -72,44 +73,15 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.upload-form input:focus,
-.upload-form textarea:focus {
+.form-input:focus,
+.form-textarea:focus {
   border-color: #6e9dfc;
   box-shadow: 0 0 8px rgba(110, 157, 252, 0.5);
 }
 
-/* Knoppen */
-.form-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
-.upload-button,
-.cancel-button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.upload-button {
-  background: #012d80;
-  color: white;
-}
-
-
-.cancel-button {
-  background: #dc3545;
-  color: white;
-}
-
-.cancel-button:hover {
-  background: #a71d2a;
-  transform: translateY(-2px);
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
 }
 
 /* Progress bar */
@@ -128,4 +100,94 @@
   font-size: 0.9rem;
   text-align: center;
   line-height: 20px;
+  transition: width 0.3s ease;
+}
+
+/* Knoppen */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.upload-button,
+.cancel-button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Ruimte tussen icoon en tekst */
+}
+
+.upload-button {
+  background-color: #6e9dfc; /* Blauwe kleur */
+  color: white;
+}
+
+.upload-button:hover {
+  background-color: #5185ee;
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  background-color: #dc3545; /* Rode kleur */
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #a71d2a;
+  transform: translateY(-2px);
+}
+
+/* Iconen in knoppen */
+.upload-button .icon,
+.cancel-button .icon {
+  font-size: 1.2rem;
+}
+
+/* Responsiviteit */
+@media (max-width: 768px) {
+  .upload-container {
+    margin: 3rem auto 8rem;
+    padding: 25px;
+  }
+
+  .upload-title {
+    font-size: 1.8rem;
+  }
+
+  .upload-subtitle {
+    font-size: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .upload-button,
+  .cancel-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .upload-container {
+    padding: 20px;
+  }
+
+  .upload-title {
+    font-size: 1.5rem;
+  }
+
+  .upload-subtitle {
+    font-size: 0.95rem;
+  }
 }

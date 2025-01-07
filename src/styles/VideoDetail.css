@@ -1,3 +1,6 @@
+/* src/styles/VideoDetail.css */
+
+
 .video-detail-container {
   max-width: 900px;
   margin: 40px auto;
@@ -5,27 +8,50 @@
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
 }
+
+
+.back-home-button {
+  margin-bottom: 20px;
+}
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #012d80;
+  background-color: #f4f4fa;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.back-button:hover {
+  transform: translateY(-0.2px);
+}
+
 
 .video-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
-
 .video-header h1 {
   font-size: 2rem;
   color: #2c3e50;
   margin: 0;
+  line-height: 1.2;
 }
-
 .views-count {
   font-size: 1rem;
   font-weight: bold;
   color: #6e9dfc;
 }
 
+/* De videospeler */
 .video-player {
   width: 100%;
   height: auto;
@@ -34,28 +60,49 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.video-description {
-  margin-top: 20px;
+
+.video-info {
+  display: flex;
+  align-items: start;
+  margin-bottom: 17px;
+}
+.video-author-icon {
+  font-size: 1.5rem;
+  color: #012d80;
+}
+.video-author {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin: 0;
+  font-weight: 500;
+}
+.video-author-name {
+  font-weight: 600;
+  color: #6e9dfc;
 }
 
+/* Beschrijving */
+.video-description {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
 .video-description h2 {
   font-size: 1.5rem;
   color: #2c3e50;
   margin-bottom: 10px;
 }
-
 .video-description p {
   font-size: 1rem;
   color: #7f8c8d;
   line-height: 1.6;
 }
 
+
 .video-actions {
   display: flex;
   gap: 20px;
   margin-top: 30px;
 }
-
 .edit-button,
 .delete-button {
   padding: 10px 20px;
@@ -64,16 +111,19 @@
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .edit-button {
   background-color: #6e9dfc;
   color: white;
 }
-
 .edit-button:hover {
   background-color: #012d80;
+  transform: translateY(-1px);
 }
 
 .delete-button {
@@ -81,10 +131,11 @@
   color: white;
   border: none;
 }
-
 .delete-button:hover {
   background-color: #c0392b;
+  transform: translateY(-1px);
 }
+
 
 .modal-overlay {
   position: fixed;
@@ -100,28 +151,28 @@
 }
 
 .modal {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-
 .modal h2 {
   font-size: 1.5rem;
   color: #2c3e50;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
-
 .modal p {
   font-size: 1rem;
   color: #7f8c8d;
   margin-bottom: 20px;
 }
 
+/* Modal-acties */
 .modal-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 20px;
 }
 
 .confirm-delete-button {
@@ -132,11 +183,10 @@
   border-radius: 8px;
   cursor: pointer;
 }
-
 .confirm-delete-button:hover {
   background-color: #c0392b;
+  transform: translateY(-1px);
 }
-
 .cancel-button {
   background-color: #ddd;
   color: #333;
@@ -145,7 +195,170 @@
   border-radius: 8px;
   cursor: pointer;
 }
-
 .cancel-button:hover {
   background-color: #bbb;
+  transform: translateY(-1px);
+}
+
+/* Fout-/laadberichten */
+.error-message {
+  text-align: center;
+  color: #e74c3c;
+  font-weight: 600;
+  margin-top: 40px;
+}
+.loading-message {
+  text-align: center;
+  font-weight: 500;
+  margin-top: 40px;
+  color: #7f8c8d;
+}
+
+
+/* ================================= */
+/* Comment/Reactie Sectie onder video */
+/* ================================= */
+
+.comment-section {
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.comment-section h2 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.comment-list {
+  margin-bottom: 20px;
+}
+
+.no-comments {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+}
+
+.comment-item {
+  background-color: #f9f9ff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.comment-meta {
+  font-size: 0.9rem;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+}
+
+.comment-user-icon {
+  color: #012d80;
+}
+
+.comment-date {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-left: auto;
+}
+
+.comment-content {
+  font-size: 1rem;
+  color: #34495e;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comment-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.comment-textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 60px;
+  outline: none;
+  font-family: "Inter", sans-serif;
+}
+
+.comment-textarea:focus {
+  border-color: #6e9dfc;
+  box-shadow: 0 0 5px rgba(110, 157, 252, 0.3);
+}
+
+.comment-error {
+  color: #e74c3c;
+  font-weight: 600;
+  margin: 0;
+}
+
+.comment-submit-button {
+  align-self: flex-end;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #6e9dfc;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.comment-submit-button:hover {
+  background-color: #012d80;
+  transform: translateY(-1px);
+}
+
+.login-reminder {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  background: #f9f9ff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+
+.comment-delete-button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: #f43f3f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.comment-delete-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
 }
