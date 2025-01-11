@@ -2,7 +2,8 @@ import axios from "axios";
 
 
 const API = axios.create({
-  baseURL: "https://video-link-storage.onrender.com/",
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000/api",
+  withCredentials: true,
 });
 
 // Voeg CancelToken toe voor upload annuleren
