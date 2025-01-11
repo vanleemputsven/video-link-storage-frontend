@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const API = axios.create({
-  baseURL: "https://video-link-storage.onrender.com",
+  baseURL: "https://video-link-storage.onrender.com/",
 });
 
 // Voeg CancelToken toe voor upload annuleren
