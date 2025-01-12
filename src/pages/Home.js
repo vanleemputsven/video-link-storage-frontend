@@ -236,6 +236,7 @@ const Home = () => {
                 className="search-input"
                 aria-label="Zoek naar video's"
               />
+              <div className="search-buttons-wrapper">
               <button type="submit" className="search-button">
                 <FontAwesomeIcon icon="search" /> Zoek
               </button>
@@ -249,6 +250,7 @@ const Home = () => {
                   <FontAwesomeIcon icon="times" /> Clear
                 </button>
               )}
+              </div>
             </form>
           ) : (
             <div className="hero-cta-frame">
@@ -263,21 +265,6 @@ const Home = () => {
               </div>
             </div>
           )}
-        </div>
-
-        <div className="hero-icons">
-          <div className="icon-container">
-            <FontAwesomeIcon icon="graduation-cap" className="hero-icon" />
-            <p>Educatie</p>
-          </div>
-          <div className="icon-container">
-            <FontAwesomeIcon icon="video" className="hero-icon" />
-            <p>Video's</p>
-          </div>
-          <div className="icon-container">
-            <FontAwesomeIcon icon="users" className="hero-icon" />
-            <p>Community</p>
-          </div>
         </div>
       </section>
 
