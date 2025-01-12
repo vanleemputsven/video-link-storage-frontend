@@ -111,6 +111,7 @@
   align-items: center; /* Centreer de knoppen verticaal */
   gap: 12px;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .search-input {
@@ -190,23 +191,44 @@
 }
 
 @media (max-width: 600px) {
-  .home-info-message {
-    padding: 15px 20px;
-    font-size: 1rem;
-    width: 95%;
-  }
+
 
   .search-form {
     flex-direction: column;
+    align-items: center; /* Centreert de inhoud horizontaal */
     gap: 10px;
+  }
+
+  .search-input {
+    width: 70%;
+    font-size: 0.95rem;      
+    padding: 12px;            
+    border: 1px solid #ddd;  
+    border-radius: 8px;
+  }
+
+  .search-buttons-wrapper {
+    display: flex;
+    justify-content: space-between; /* Verdeelt de buttons gelijkmatig */
+    align-items: center; /* Centreert de buttons verticaal */
+    gap: 15px; /* Iets grotere gap tussen de buttons */
+    width: 70%; /* Zelfde breedte als de input voor consistente uitlijning */
   }
 
   .search-button,
   .clear-button {
-    width: 100%;
+    flex: 1; /* Laat beide buttons even breed worden */
+    display: flex;
     justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    padding: 12px 16px;
+    /* Eventueel kun je een minimale breedte instellen:
+       min-width: 100px; */
   }
 }
+
+
 
 /* Video-sectie */
 .videos-section {
