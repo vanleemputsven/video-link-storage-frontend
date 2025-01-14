@@ -1,87 +1,112 @@
-/* src/styles/Contact.css */
+/* src/styles/StaticPage.css */
 
-/* Algemene container */
+/* 1. Algemene container */
 .static-page-container {
   max-width: 800px;
-  margin: 100px auto;
-  padding: 30px;
-  background-color: #ffffff;
+  margin: 5rem auto;
+  padding: 30px 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   font-family: "Inter", sans-serif;
   color: #2c3e50;
-  text-align: center;
-}
-
-/* Titel */
-.static-page-container h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #4a69bd;
-}
-
-/* Subtitel */
-.static-page-container p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  color: #7f8c8d;
-}
-
-/* Meldingen */
-.success-message {
-  color: #28a745;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.error-message {
-  color: #e74c3c;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Contactformulier */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Formulier groepen */
-.form-group {
-  display: flex;
-  flex-direction: column;
   text-align: left;
 }
 
-.form-group label {
-  font-weight: bold;
-  margin-bottom: 5px;
+/* 2. Titels en subtitels */
+.static-page-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
   color: #2c3e50;
-  display: block;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.static-page-container h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
+/* 3. Algemene tekst */
+.static-page-container p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #7f8c8d;
+}
+.footer-text {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  margin-top: 30px;
+}
+
+/* 4. Lijsten (correcte opsommingstekens) */
+.static-page-container ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 20px;
+  color: #7f8c8d;
+}
+.static-page-container ul li {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* 5. Meldingen (success/error) */
+.success-message {
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-left: 4px solid #28a745;
+  padding: 10px 15px;
+  background-color: #ecf9f1;
+  color: #27ae60;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.error-message {
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-left: 4px solid #e74c3c;
+  padding: 10px 15px;
+  background-color: #fdf2f2;
+  color: #e74c3c;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* 6. Formulier voor de Contact-pagina */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+/* 7. Inputs en textarea in dezelfde stijl als .upload-input */
 .form-input,
 .form-textarea {
   font-family: "Inter", sans-serif;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  background-color: #f9f9ff;
   font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-input:focus,
 .form-textarea:focus {
   border-color: #6e9dfc;
-  box-shadow: 0 0 8px rgba(110, 157, 252, 0.5);
+  box-shadow: 0 0 8px rgba(110, 157, 252, 0.4);
 }
 
 .form-textarea {
@@ -89,133 +114,99 @@
   min-height: 100px;
 }
 
-/* Knoppen */
+/* 8. Knop met dezelfde styling als .upload-button */
 .submit-button {
-  background: linear-gradient(135deg, #4a69bd, #5d8ae6);
-  color: white;
-  border: none;
-  padding: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  background-color: #012d80; /* Zelfde als .upload-button */
+  color: #ffffff;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Kleine ruimte tussen icoon en tekst */
 }
 
+/* Hover-effect exact hetzelfde als in Upload.css */
 .submit-button:hover {
-  background-color: #395dbe;
-  transform: translateY(-1px);
+  background-color: #5185ee;
+  transform: translateY(-2px);
 }
 
-/* Extra contactinformatie */
-.additional-contact-info {
-  margin-top: 40px;
-  text-align: left;
+/* Icon in de knop */
+.submit-button .icon {
+  font-size: 1.2rem;
 }
 
-.additional-contact-info h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
-
-.additional-contact-info p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  color: #7f8c8d;
-}
-
-.additional-contact-info ul {
-  padding-left: 20px;
-  font-size: 1.1rem;
-  color: #7f8c8d;
-  margin-bottom: 20px;
-}
-
-.additional-contact-info ul li {
-  margin-bottom: 10px;
-}
-
-.additional-contact-info a {
-  color: #4a69bd;
+/* 9. Links (bv. .static-link) */
+.static-link,
+.static-page-container a {
+  color: #6e9dfc;
   text-decoration: none;
   font-weight: 600;
 }
-
-.additional-contact-info a:hover {
+.static-link:hover,
+.static-page-container a:hover {
   text-decoration: underline;
 }
 
-/* Responsieve Aanpassingen */
+/* 10. Sectie extra contactinfo */
+.additional-contact-info {
+  margin-top: 40px;
+}
+.additional-contact-info h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+.additional-contact-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #7f8c8d;
+}
+
+/* 11. Responsiviteit */
 @media (max-width: 768px) {
   .static-page-container {
-    padding: 30px 15px;
-    margin: 50px auto;
+    margin: 3rem auto;
+    padding: 25px;
   }
-
   .static-page-container h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
-
-  .static-page-container p {
-    font-size: 1rem;
+  .static-page-container h2 {
+    font-size: 1.2rem;
   }
-
-  .contact-form {
-    gap: 15px;
-  }
-
   .submit-button {
     width: 100%;
     justify-content: center;
-  }
-
-  .additional-contact-info h2 {
-    font-size: 1.8rem;
-  }
-
-  .additional-contact-info p,
-  .additional-contact-info ul {
-    font-size: 1rem;
   }
 }
 
 @media (max-width: 600px) {
   .static-page-container {
-    padding: 20px 10px;
-    margin: 30px auto;
+    margin: 2rem auto;
+    padding: 20px;
   }
-
   .static-page-container h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
-
-  .static-page-container p {
-    font-size: 0.95rem;
+  .static-page-container h2 {
+    font-size: 1.1rem;
   }
-
   .form-input,
   .form-textarea {
     padding: 10px;
     font-size: 0.95rem;
   }
-
   .submit-button {
     padding: 10px 15px;
     font-size: 0.9rem;
-  }
-
-  .additional-contact-info h2 {
-    font-size: 1.6rem;
-  }
-
-  .additional-contact-info p,
-  .additional-contact-info ul {
-    font-size: 0.95rem;
   }
 }

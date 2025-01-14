@@ -1,4 +1,5 @@
 /* src/styles/Home.css */
+/* (Hieronder staat de volledige CSS, inclusief de relevante poster/video wijzigingen) */
 
 /* Algemene container */
 .home-container {
@@ -156,6 +157,28 @@
   background-color: #c0392b;
 }
 
+.search-buttons-wrapper {
+  display: flex;
+  gap: 12px; 
+  align-items: center;
+}
+
+@media (min-width: 601px) {
+  .search-form {
+    flex-direction: row; /* Forceer horizontale weergave */
+    gap: 10px;
+  }
+
+  .search-input {
+    flex: 1;
+    width: 300px; 
+  }
+
+  .search-buttons-wrapper {
+    flex-shrink: 0; /* Zorg dat de buttons niet krimpen */
+  }
+}
+
 @media (max-width: 768px) {
   .video-thumbnail {
     height: 150px;
@@ -190,45 +213,40 @@
   }
 }
 
+/* Mobiele styling */
 @media (max-width: 600px) {
-
-
   .search-form {
     flex-direction: column;
-    align-items: center; /* Centreert de inhoud horizontaal */
+    align-items: center;
     gap: 10px;
   }
 
   .search-input {
     width: 70%;
-    font-size: 0.95rem;      
-    padding: 12px;            
-    border: 1px solid #ddd;  
+    font-size: 0.95rem;
+    padding: 12px;
+    border: 1px solid #ddd;
     border-radius: 8px;
   }
 
   .search-buttons-wrapper {
     display: flex;
-    justify-content: space-between; /* Verdeelt de buttons gelijkmatig */
-    align-items: center; /* Centreert de buttons verticaal */
-    gap: 15px; /* Iets grotere gap tussen de buttons */
-    width: 70%; /* Zelfde breedte als de input voor consistente uitlijning */
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 70%;
   }
 
   .search-button,
   .clear-button {
-    flex: 1; /* Laat beide buttons even breed worden */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.95rem;
     padding: 12px 16px;
-    /* Eventueel kun je een minimale breedte instellen:
-       min-width: 100px; */
   }
 }
-
-
 
 /* Video-sectie */
 .videos-section {
@@ -252,15 +270,15 @@
   font-size: 1.2rem;
   margin: 20px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  grid-column: 1 / -1; /* Span alle kolommen */
+  grid-column: 1 / -1; 
 }
 
 .home-info-message.info {
-  border-left: 5px solid #6e9dfc; /* Blauwe rand voor info */
+  border-left: 5px solid #6e9dfc; 
 }
 
 .home-info-message.error {
-  border-left: 5px solid #e74c3c; /* Rode rand voor error */
+  border-left: 5px solid #e74c3c;
 }
 
 .home-info-message a {
@@ -315,6 +333,7 @@
   height: 180px;
   object-fit: cover;
   border-bottom: 1px solid #f0f0f0;
+  /* poster en preload="none" zorgen voor snellere laadtijd */
 }
 
 .favorite-button {
@@ -331,7 +350,6 @@
   align-items: center;
   justify-content: center;
   
-  /* Tooltip Stijlen */
   position: relative;
 }
 
@@ -341,12 +359,12 @@
 }
 
 .favorite-button .svg-inline--fa {
-  color: #7f8c8d; /* Leeg hart grijs */
+  color: #7f8c8d;
   font-size: 1.5rem;
 }
 
 .favorite-button.favorited .svg-inline--fa {
-  color: #e74c3c; /* Gevuld hart rood */
+  color: #e74c3c; 
 }
 
 @keyframes heartBeat {
@@ -374,7 +392,7 @@
 .favorite-button::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: 125%; /* Positioneer boven de knop */
+  bottom: 125%; 
   right: 50%;
   transform: translateX(50%);
   background-color: #6e9dfc;
@@ -459,12 +477,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 60vh; /* Voldoende hoogte voor de spinner */
+  height: 60vh;
 }
 
 .spinner {
-  border: 8px solid #f3f3f3; /* Lichtgrijze rand */
-  border-top: 8px solid #6e9dfc; /* Blauwe rand */
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #6e9dfc;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -556,7 +574,7 @@
   color: #2c3e50;
 }
 
-/* General styling for the control dots */
+/* Carousel dots */
 .control-dots {
   display: flex;
   justify-content: center;
@@ -570,15 +588,15 @@
   height: 12px;
   margin: 0 6px;
   border-radius: 50%;
-  background-color: #dcdcdc; /* Default dot color */
+  background-color: #dcdcdc;
   transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
-  border: 2px solid transparent; /* Optional border */
+  border: 2px solid transparent;
 }
 
 .control-dots .dot.selected {
-  background-color: #012d80; /* Selected dot color */
-  transform: scale(1.4); /* Enlargement for selected */
+  background-color: #012d80;
+  transform: scale(1.4);
 }
 
 .carousel .slide {
@@ -616,8 +634,8 @@
   position: fixed;
   bottom: 40px;
   right: 40px;
-  background-color: #012d80;/* Secundaire kleur */
-  color: #ffffff; /* Witte iconen */
+  background-color: #012d80;
+  color: #ffffff;
   border: none;
   border-radius: 50%;
   padding: 12px;
@@ -631,7 +649,7 @@
 }
 
 .back-to-top:hover {
-  background-color: #5185ee; /* Secundaire hover kleur */
+  background-color: #5185ee;
   transform: translateY(-2px);
 }
 
@@ -639,17 +657,11 @@
   font-size: 1.2rem;
 }
 
-/* ================================ */
-/* TOEVOEGING: Frame rond CTA
-   als user niet is ingelogd        */
-/* ================================ */
+/* Frame voor CTA als user niet is ingelogd */
 .hero-cta-frame {
-
   padding: 20px;
-
   flex-direction: column;
   align-items: center;
-
 }
 
 .hero-cta {
@@ -662,8 +674,6 @@
 .hero-cta-icon {
   font-size: 2.5rem;
   color: #fff;
-
-
   transition: transform 0.3s ease;
 }
 
@@ -700,10 +710,6 @@
   transform: translateY(-0.5px);
 }
 
-
-
-
-
 .stats-summary {
   display: flex;
   justify-content: center;
@@ -735,7 +741,6 @@
   color: #2c3e50;
 }
 
-
 .video-author {
   display: flex;
   align-items: center;
@@ -754,3 +759,7 @@
   font-weight: 600;
   color: #2c3e50;
 }
+
+
+
+

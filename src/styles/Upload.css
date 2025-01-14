@@ -1,46 +1,55 @@
 /* src/styles/Upload.css */
 
-/* Algemene container */
+/* Container in de stijl van AccountPage */
 .upload-container {
   max-width: 600px;
-  margin: 5rem auto 10rem;
-  padding: 30px;
+  margin: 60px auto; /* Zelfde marges als account-page-container */
+  padding: 30px 40px;
+  background-color: #fff;
   border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: "Inter", sans-serif;
+  color: #2c3e50;
+  text-align: center;
 }
 
-/* Titel en subtitel */
+/* Titel & subtitel in dezelfde stijl als .account-page-title & .account-page-subtitle */
 .upload-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #2c3e50;
   margin-bottom: 10px;
 }
 
 .upload-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #7f8c8d;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-/* Meldingen */
+/* Meldingen in de stijl van .account-page-message */
 .upload-message {
+  font-size: 1rem;
+  font-weight: 500;
   margin-bottom: 20px;
-  font-weight: bold;
+  border-radius: 8px;
+  padding: 12px 15px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .success-message {
-  color: #28a745; /* Groen voor succes */
+  background-color: #ecf9f1;
+  color: #27ae60;
+  border-left: 4px solid #27ae60;
 }
 
 .error-message {
-  color: #e74c3c; /* Rood voor fouten */
+  background-color: #fdf2f2;
+  color: #e74c3c;
+  border-left: 4px solid #e74c3c;
 }
 
-/* Formulier */
+/* Formulier in de stijl van .account-page-form */
 .upload-form {
   display: flex;
   flex-direction: column;
@@ -48,6 +57,7 @@
   text-align: left;
 }
 
+/* Form-groepen en labels */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -60,31 +70,30 @@
   font-size: 1rem;
 }
 
+/* Inputs en textarea in de stijl van .account-page-input */
 .form-input,
 .form-textarea {
   padding: 12px;
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: #f9f9ff;
   outline: none;
-  background-color: #f9f9f9;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-input:focus,
 .form-textarea:focus {
   border-color: #6e9dfc;
-  box-shadow: 0 0 8px rgba(110, 157, 252, 0.5);
+  box-shadow: 0 0 8px rgba(110, 157, 252, 0.4);
 }
 
 .form-textarea {
-  resize: vertical;
   min-height: 100px;
+  resize: vertical;
 }
 
-/* Progress bar */
+/* Voortgangsbalk (zoals in AccountPage, maar specifiek voor upload) */
 .progress-bar-container {
   background: #f3f3f3;
   border: 1px solid #ddd;
@@ -103,7 +112,7 @@
   transition: width 0.3s ease;
 }
 
-/* Knoppen */
+/* Knoppen in dezelfde stijl als .account-page-button */
 .form-actions {
   display: flex;
   gap: 10px;
@@ -113,49 +122,47 @@
 
 .upload-button,
 .cancel-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 12px 20px;
   font-size: 1rem;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: #ffffff;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Ruimte tussen icoon en tekst */
+}
+
+.upload-button:hover,
+.cancel-button:hover {
+  transform: translateY(-0.2px);
 }
 
 .upload-button {
-  background-color: #6e9dfc; /* Blauwe kleur */
-  color: white;
+  background-color: #012d80; /* Zelfde als .change-button in AccountPage */
 }
 
 .upload-button:hover {
-  background-color: #5185ee;
-  transform: translateY(-2px);
+  background-color: #6e9dfc;
 }
 
 .cancel-button {
-  background-color: #dc3545; /* Rode kleur */
-  color: white;
+  background-color: #e74c3c; /* Zelfde als .delete-button in AccountPage */
 }
 
 .cancel-button:hover {
-  background-color: #a71d2a;
-  transform: translateY(-2px);
-}
-
-/* Iconen in knoppen */
-.upload-button .icon,
-.cancel-button .icon {
-  font-size: 1.2rem;
+  background-color: #c0392b;
 }
 
 /* Responsiviteit */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .upload-container {
-    margin: 3rem auto 8rem;
-    padding: 25px;
+    margin: 30px auto;
+    padding: 20px;
   }
 
   .upload-title {
@@ -175,19 +182,5 @@
   .cancel-button {
     width: 100%;
     justify-content: center;
-  }
-}
-
-@media (max-width: 600px) {
-  .upload-container {
-    padding: 20px;
-  }
-
-  .upload-title {
-    font-size: 1.5rem;
-  }
-
-  .upload-subtitle {
-    font-size: 0.95rem;
   }
 }

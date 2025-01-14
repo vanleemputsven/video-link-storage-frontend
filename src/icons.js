@@ -27,6 +27,9 @@ import {
   faArrowLeft,
   faEdit,
   faTrash,
+  faFilm,
+  faPaperPlane,
+  faTimesCircle
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faRegularHeart } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -71,4 +74,7 @@ library.add(
   faArrowLeft,
   faEdit,
   faTrash,
+  faFilm,
+  faPaperPlane,
+  faTimesCircle
 );

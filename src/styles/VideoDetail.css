@@ -1,6 +1,5 @@
 /* src/styles/VideoDetail.css */
 
-
 .video-detail-container {
   max-width: 900px;
   margin: 40px auto;
@@ -11,7 +10,7 @@
   font-family: "Inter", sans-serif;
 }
 
-
+/* Terug-naar-home-knop */
 .back-home-button {
   margin-bottom: 20px;
 }
@@ -32,7 +31,7 @@
   transform: translateY(-0.2px);
 }
 
-
+/* Video-header */
 .video-header {
   display: flex;
   justify-content: space-between;
@@ -60,7 +59,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Auteur-informatie */
 .video-info {
   display: flex;
   align-items: start;
@@ -97,7 +96,7 @@
   line-height: 1.6;
 }
 
-
+/* Acties: Bewerken/Verwijderen */
 .video-actions {
   display: flex;
   gap: 20px;
@@ -136,71 +135,7 @@
   transform: translateY(-1px);
 }
 
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-.modal h2 {
-  font-size: 1.5rem;
-  color: #2c3e50;
-  margin-bottom: 15px;
-}
-.modal p {
-  font-size: 1rem;
-  color: #7f8c8d;
-  margin-bottom: 20px;
-}
-
-/* Modal-acties */
-.modal-actions {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-}
-
-.confirm-delete-button {
-  background-color: #f43f3f;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.confirm-delete-button:hover {
-  background-color: #c0392b;
-  transform: translateY(-1px);
-}
-.cancel-button {
-  background-color: #ddd;
-  color: #333;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.cancel-button:hover {
-  background-color: #bbb;
-  transform: translateY(-1px);
-}
-
-/* Fout-/laadberichten */
+/* Error- en laadberichten */
 .error-message {
   text-align: center;
   color: #e74c3c;
@@ -213,7 +148,6 @@
   margin-top: 40px;
   color: #7f8c8d;
 }
-
 
 /* ================================= */
 /* Comment/Reactie Sectie onder video */
@@ -246,7 +180,7 @@
   padding: 10px 15px;
   border-radius: 8px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .comment-meta {
@@ -258,11 +192,9 @@
   gap: 5px;
   font-weight: 500;
 }
-
 .comment-user-icon {
   color: #012d80;
 }
-
 .comment-date {
   font-size: 0.9rem;
   color: #7f8c8d;
@@ -276,18 +208,17 @@
   margin: 0;
 }
 
+/* Nieuw comment-formulier */
 .comment-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
 .comment-label {
   font-size: 1rem;
   font-weight: 600;
   color: #2c3e50;
 }
-
 .comment-textarea {
   padding: 10px;
   font-size: 1rem;
@@ -298,18 +229,17 @@
   outline: none;
   font-family: "Inter", sans-serif;
 }
-
 .comment-textarea:focus {
   border-color: #6e9dfc;
   box-shadow: 0 0 5px rgba(110, 157, 252, 0.3);
 }
-
 .comment-error {
   color: #e74c3c;
   font-weight: 600;
   margin: 0;
 }
 
+/* Reactie plaatsen-knop */
 .comment-submit-button {
   align-self: flex-end;
   padding: 10px 20px;
@@ -322,7 +252,6 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .comment-submit-button:hover {
   background-color: #012d80;
   transform: translateY(-1px);
@@ -340,8 +269,7 @@
   gap: 8px;
 }
 
-
-
+/* Reactie verwijderen-knop */
 .comment-delete-button {
   margin-top: 5px;
   padding: 5px 10px;
@@ -357,8 +285,84 @@
   align-items: center;
   gap: 5px;
 }
-
 .comment-delete-button:hover {
   background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* ================================ */
+/* Modal (verwijderen-bevestiging)  */
+/* ================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.modal h2 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+.modal p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+
+/* Modal-acties: geüniformeerde stijl voor de twee knoppen */
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+/* Basis-stijl voor beide modal-knoppen */
+.modal-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+/* Verwijderen-knop */
+.confirm-delete-button {
+  background-color: #f43f3f;
+  color: #ffffff;
+}
+.confirm-delete-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Annuleren-knop */
+.cancel-button {
+  background-color: #ddd;
+  color: #333;
+}
+.cancel-button:hover {
+  background-color: #bbb;
   transform: translateY(-1px);
 }

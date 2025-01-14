@@ -249,24 +249,24 @@ const VideoDetail = () => {
 
       {/* Bevestigings-modal voor verwijderen van de video */}
       {showDeleteModal && (
-        <div className="modal-overlay">
-          <div className="modal">
-            <h2>Bevestig Verwijderen</h2>
-            <p>Weet je zeker dat je deze video wilt verwijderen?</p>
-            <div className="modal-actions">
-              <button onClick={handleDelete} className="confirm-delete-button">
-                <FontAwesomeIcon icon="trash" /> Verwijderen
-              </button>
-              <button
-                onClick={() => setShowDeleteModal(false)}
-                className="cancel-button"
-              >
-                Annuleren
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="modal-overlay">
+    <div className="modal">
+      <h2>Bevestig Verwijderen</h2>
+      <p>Weet je zeker dat je deze video wilt verwijderen?</p>
+      <div className="modal-actions">
+        <button onClick={handleDelete} className="confirm-delete-button">
+          <FontAwesomeIcon icon="trash" /> Verwijderen
+        </button>
+        <button
+          onClick={() => setShowDeleteModal(false)}
+          className="cancel-button"
+        >
+          <FontAwesomeIcon icon="times-circle" /> Annuleren
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 };

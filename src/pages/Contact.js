@@ -104,8 +104,8 @@ const Contact = () => {
               info@videolinkstorage.com
             </a>
           </li>
-          <li>Telefoon: +32 123 456 789</li>
-          <li>Adres: 1234 Educatie Straat, Leuven, België</li>
+          <li>Telefoon: +32 468 00 57 75</li>
+          <li>Adres: Hertogstraat 178, Leuven, België</li>
         </ul>
         <p>
           We zijn beschikbaar van maandag tot vrijdag, van 9:00 tot 17:00 uur.

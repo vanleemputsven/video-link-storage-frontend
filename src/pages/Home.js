@@ -1,4 +1,5 @@
 // src/pages/Home.js
+
 import React, { useEffect, useState } from "react";
 import API, { addFavorite, removeFavorite, getFavorites } from "../services/api";
 import { Link } from "react-router-dom";
@@ -89,23 +90,31 @@ const Home = () => {
   const [visibleVideos, setVisibleVideos] = useState(6);
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
 
-  // We lezen de token uit localStorage en checken periodiek of hij geldig is
+  // Nu initieel false, want we tonen de spinner alleen in de video-sectie bij het laden
+  const [loading, setLoading] = useState(false);
+
   const [currentToken, setCurrentToken] = useState(localStorage.getItem("token"));
   const [showBackToTop, setShowBackToTop] = useState(false);
 
+  // Bepaal of de gebruiker is ingelogd aan de hand van de token-validatie
+  const userLoggedIn = currentToken && !isTokenExpired(currentToken);
+
   // Haal video's op (eventueel met zoekquery)
   const fetchVideos = async (query = "") => {
+    // We starten met laden van video's alleen als de gebruiker is ingelogd
     setLoading(true);
     try {
-      // Als de token verlopen is, loggen we uit
+      // Token opnieuw checken voordat we data ophalen
       if (currentToken && isTokenExpired(currentToken)) {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         setCurrentToken(null);
+        setLoading(false);
+        return;
       }
 
+      // Ophalen van video's (met of zonder zoekquery)
       const response = query
         ? await API.get(`/videos/search?query=${encodeURIComponent(query)}`)
         : await API.get("/videos");
@@ -118,6 +127,7 @@ const Home = () => {
         setFavorites(favResponse.data.map((vid) => vid._id));
       }
     } catch (err) {
+      // Is de gebruiker niet (meer) ingelogd?
       if (!currentToken || isTokenExpired(currentToken)) {
         setError("Je bent niet ingelogd. Log in om video's te bekijken.");
       } else {
@@ -130,17 +140,27 @@ const Home = () => {
     }
   };
 
+  // Als we de zoekbalk legen, halen we opnieuw alle video's op (mits ingelogd)
   const handleClear = () => {
     setSearchQuery("");
-    fetchVideos();
+    if (userLoggedIn) {
+      fetchVideos();
+    }
   };
 
-  // Bij het laden + wanneer token wijzigt, video's opnieuw ophalen
+  // Alleen video's ophalen als de gebruiker is ingelogd
   useEffect(() => {
-    fetchVideos();
-  }, [currentToken]);
+    if (userLoggedIn) {
+      fetchVideos();
+    } else {
+      // Niet ingelogd => geen video's laden
+      setLoading(false);
+      setVideos([]);
+      setFavorites([]);
+    }
+  }, [userLoggedIn]);
 
-  // Elke 5s checken of de token nog geldig is
+  // Elke 5s checken of de token nog geldig is (inclusief automatische logout)
   useEffect(() => {
     const interval = setInterval(() => {
       const tokenInStorage = localStorage.getItem("token");
@@ -169,7 +189,9 @@ const Home = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchVideos(searchQuery);
+    if (userLoggedIn) {
+      fetchVideos(searchQuery);
+    }
   };
 
   const handleLoadMore = () => {
@@ -191,7 +213,7 @@ const Home = () => {
     }
   };
 
-  // preload="metadata" voor snellere laadtijd van video's
+  // Voor het genereren van download-URL (m.b.v. Cloudinary als voorbeeld)
   const getDownloadUrl = (fileUrl) => {
     const parts = fileUrl.split("/upload/");
     if (parts.length !== 2) return fileUrl;
@@ -201,17 +223,6 @@ const Home = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const userLoggedIn = currentToken && !isTokenExpired(currentToken);
-
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="spinner"></div>
-        <p className="loading-message">Video's laden...</p>
-      </div>
-    );
-  }
 
   return (
     <div className="home-container">
@@ -237,19 +248,19 @@ const Home = () => {
                 aria-label="Zoek naar video's"
               />
               <div className="search-buttons-wrapper">
-              <button type="submit" className="search-button">
-                <FontAwesomeIcon icon="search" /> Zoek
-              </button>
-              {searchQuery && (
-                <button
-                  type="button"
-                  className="clear-button"
-                  onClick={handleClear}
-                  aria-label="Wis zoekresultaten"
-                >
-                  <FontAwesomeIcon icon="times" /> Clear
+                <button type="submit" className="search-button">
+                  <FontAwesomeIcon icon="search" /> Zoek
                 </button>
-              )}
+                {searchQuery && (
+                  <button
+                    type="button"
+                    className="clear-button"
+                    onClick={handleClear}
+                    aria-label="Wis zoekresultaten"
+                  >
+                    <FontAwesomeIcon icon="times" /> Clear
+                  </button>
+                )}
               </div>
             </form>
           ) : (
@@ -268,9 +279,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/** 
-       * Stats Summary 
-       * Nu alleen tonen als user ingelogd is
+      {/**
+       * Stats Summary
+       * Alleen tonen als user ingelogd is
        */}
       {userLoggedIn && (
         <section className="stats-summary">
@@ -289,99 +300,113 @@ const Home = () => {
         </section>
       )}
 
-      {/* Video's */}
-      <section className="videos-section">
-        <h2>Bekijk onze video's</h2>
-        <div className="video-grid">
-          {error && (
-            <div
-              className={`home-info-message ${
-                userLoggedIn ? "error" : "info"
-              }`}
-            >
-              <FontAwesomeIcon icon="info-circle" className="info-icon" />
-              {error}{" "}
-              {!userLoggedIn && (
-                <>
-                  <br />
-                  <Link to="/login">Log in</Link> of{" "}
-                  <Link to="/register">registreer</Link> om toegang te krijgen.
-                </>
-              )}
+      {/* Video's (alleen tonen als de user is ingelogd) */}
+      {userLoggedIn && (
+        <section className="videos-section">
+          <h2>Bekijk onze video's</h2>
+
+          {/* Als het laden nog bezig is, tonen we de spinner in de video-sectie */}
+          {loading ? (
+            <div className="loading-container">
+              <div className="spinner"></div>
+              <p className="loading-message">Video's laden...</p>
             </div>
-          )}
-
-          {videos.slice(0, visibleVideos).map((video) => (
-            <div className="video-card" key={video._id}>
-              <div className="video-thumbnail-container">
-                <video
-                  src={video.fileUrl}
-                  controls
-                  preload="metadata"
-                  className="video-thumbnail"
-                />
-                {userLoggedIn && (
-                  <button
-                    className={`favorite-button ${
-                      favorites.includes(video._id) ? "favorited" : ""
-                    }`}
-                    onClick={() => handleFavorite(video._id)}
-                    aria-label={
-                      favorites.includes(video._id)
-                        ? "Verwijder uit favorieten"
-                        : "Voeg toe aan favorieten"
-                    }
-                  >
-                    <FontAwesomeIcon
-                      icon={
-                        favorites.includes(video._id)
-                          ? "heart"
-                          : ["far", "heart"]
-                      }
-                    />
-                  </button>
-                )}
-              </div>
-
-              {/* Titel, auteur en beschrijving */}
-              <h3 className="video-title">{video.title}</h3>
-              {/* AUTEURREGEL TOEGEVOEGD: -------------------------------- */}
-              <p className="video-author">
-                <FontAwesomeIcon icon="user" className="video-author-icon" />
-                Geüpload door: <span className="video-author-name">
-                  {video.author || "Onbekend"}
-                </span>
-              </p>
-              {/* -------------------------------------------------------- */}
-
-              <p className="video-description">
-                {video.description.length > 80
-                  ? `${video.description.substring(0, 80)}...`
-                  : video.description}
-              </p>
-
-              <div className="video-actions">
-                <Link to={`/video/${video._id}`} className="details-link">
-                  <FontAwesomeIcon icon="info-circle" className="icon" /> Details
-                </Link>
-                <a
-                  href={getDownloadUrl(video.fileUrl)}
-                  className="download-button"
+          ) : (
+            <>
+              {error && (
+                <div
+                  className={`home-info-message ${
+                    userLoggedIn ? "error" : "info"
+                  }`}
                 >
-                  <FontAwesomeIcon icon="download" className="icon" /> Download
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+                  <FontAwesomeIcon icon="info-circle" className="info-icon" />
+                  {error}{" "}
+                  {!userLoggedIn && (
+                    <>
+                      <br />
+                      <Link to="/login">Log in</Link> of{" "}
+                      <Link to="/register">registreer</Link> om toegang te krijgen.
+                    </>
+                  )}
+                </div>
+              )}
 
-        {visibleVideos < videos.length && (
-          <button onClick={handleLoadMore} className="load-more-button">
-            <FontAwesomeIcon icon="chevron-down" className="icon" /> Laad Meer
-            Video's
-          </button>
-        )}
-      </section>
+              <div className="video-grid">
+                {videos.slice(0, visibleVideos).map((video) => (
+                  <div className="video-card" key={video._id}>
+                    <div className="video-thumbnail-container">
+                      <video
+                        src={video.fileUrl}
+                        controls
+                        preload="metadata"
+                        className="video-thumbnail"
+                      />
+                      {userLoggedIn && (
+                        <button
+                          className={`favorite-button ${
+                            favorites.includes(video._id) ? "favorited" : ""
+                          }`}
+                          onClick={() => handleFavorite(video._id)}
+                          aria-label={
+                            favorites.includes(video._id)
+                              ? "Verwijder uit favorieten"
+                              : "Voeg toe aan favorieten"
+                          }
+                        >
+                          <FontAwesomeIcon
+                            icon={
+                              favorites.includes(video._id)
+                                ? "heart"
+                                : ["far", "heart"]
+                            }
+                          />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Titel, auteur en beschrijving */}
+                    <h3 className="video-title">{video.title}</h3>
+                    <p className="video-author">
+                      <FontAwesomeIcon icon="user" className="video-author-icon" />
+                      Geüpload door:{" "}
+                      <span className="video-author-name">
+                        {video.author || "Onbekend"}
+                      </span>
+                    </p>
+
+                    <p className="video-description">
+                      {video.description.length > 80
+                        ? `${video.description.substring(0, 80)}...`
+                        : video.description}
+                    </p>
+
+                    <div className="video-actions">
+                      <Link to={`/video/${video._id}`} className="details-link">
+                        <FontAwesomeIcon icon="info-circle" className="icon" />{" "}
+                        Details
+                      </Link>
+                      <a
+                        href={getDownloadUrl(video.fileUrl)}
+                        className="download-button"
+                      >
+                        <FontAwesomeIcon icon="download" className="icon" />{" "}
+                        Download
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {visibleVideos < videos.length && (
+                <button onClick={handleLoadMore} className="load-more-button">
+                  <FontAwesomeIcon icon="chevron-down" className="icon" /> Laad
+                  Meer Video's
+                </button>
+              )}
+            </>
+          )}
+        </section>
+      )}
 
       {/* Features (Carousel) */}
       <section className="features-section">
@@ -398,15 +423,16 @@ const Home = () => {
             <FontAwesomeIcon icon="graduation-cap" className="feature-icon" />
             <h3>Educatief materiaal</h3>
             <p>
-              Toegang tot video's die speciaal zijn ontworpen om je leerervaring te
-              verbeteren.
+              Toegang tot video's die speciaal zijn ontworpen om je leerervaring
+              te verbeteren.
             </p>
           </div>
           <div className="feature-card">
             <FontAwesomeIcon icon="users" className="feature-icon" />
             <h3>Gebruiksvriendelijke interface</h3>
             <p>
-              Navigeer moeiteloos door onze collectie met een modern en strak ontwerp.
+              Navigeer moeiteloos door onze collectie met een modern en strak
+              ontwerp.
             </p>
           </div>
           <div className="feature-card">
@@ -421,24 +447,22 @@ const Home = () => {
             <FontAwesomeIcon icon="download" className="feature-icon" />
             <h3>Onbeperkte downloads</h3>
             <p>
-              Download video's in hoge kwaliteit en bekijk ze offline wanneer je maar
-              wilt.
+              Download video's in hoge kwaliteit en bekijk ze offline wanneer je
+              maar wilt.
             </p>
           </div>
           <div className="feature-card">
             <FontAwesomeIcon icon="info-circle" className="feature-icon" />
             <h3>Veilige opslag</h3>
             <p>
-              Je video's worden veilig opgeslagen in de cloud met privacy als hoogste
-              prioriteit.
+              Je video's worden veilig opgeslagen in de cloud met privacy als
+              hoogste prioriteit.
             </p>
           </div>
           <div className="feature-card">
             <FontAwesomeIcon icon="users" className="feature-icon" />
             <h3>Community support</h3>
-            <p>
-              Krijg hulp van medegebruikers en deel je eigen tips en kennis.
-            </p>
+            <p>Krijg hulp van medegebruikers en deel je eigen tips en kennis.</p>
           </div>
         </Carousel>
       </section>
